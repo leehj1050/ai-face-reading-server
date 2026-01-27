@@ -18,10 +18,11 @@ app.use(cors());
 app.use("/api/validate", upload.single("image"), validateRoute);
 app.use("/api/analyze", upload.single("image"), analyzeRoute);
 
-app.listen(process.env.PORT, () => {
-  console.log(`🚀 Server running on port ${process.env.PORT}`);
-});
+const PORT = Number(process.env.PORT) || 8080;
 
+app.listen(PORT, "0.0.0.0", () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+});
 
 // ⚠️ 반드시 모든 app.use / app.post 뒤에 위치
 app.use((err: any, _req: any, res: any, _next: any) => {
